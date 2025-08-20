@@ -1,0 +1,133 @@
+<div class="home-container">
+    <!-- Hero Section -->
+    <div class="hero-section text-center text-white">
+      <div class="hero-content">
+        <h1 class="display-4 fw-bold">Welcome to SmartCertify</h1>
+        <p class="lead">Empowering you to test your knowledge and achieve certifications with ease.</p>
+        <a class="btn btn-primary btn-lg mt-3" href="/courses">Start Your Journey</a>
+      </div>
+    </div>
+
+    <!-- Data Bindings-->
+     <div class="container my-2">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="feature-card shadow-sm p-4 rounded">
+            <i class="bi bi-journal-check display-4 text-primary"></i>
+            <h3 class="mt-3">Interpolation (OneWay bidngs)</h3>
+            <p>My name is {{firstName}} {{lastName}}</p>
+            <p> Total Price : {{price * quantity}}</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card shadow-sm p-4 rounded">
+            <i class="bi bi-award display-4 text-warning"></i>
+            <h3>Property Bindings</h3>
+            <button class="btn btn-primary" [disabled]="isDisabled">Disable Button</button>
+            <br>
+            <img [src]="imageUrl" alt="Sample Image" class="img-fluid" height="100" width="100"/>
+            <div [class.active]="isActive" class="status-box">Status: Active</div>
+           
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card shadow-sm p-4 rounded">
+            <i class="bi bi-clock-history display-4 text-success"></i>
+            <h3 class="mt-3">Event Bindings</h3>
+            
+            <button class="btn btn-secondary" (click)="handleClick()">Click Me</button>
+            <p>{{this.clickMessage}}</p>
+            
+            <input type="text" (input)="onInputChange($event)" placeholder="Type something..." class="form-control mt-2">
+            <p>{{inputMessage}}</p>
+            <div (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()" class="hover-box">
+                Hover over me!
+            </div>
+            <p>{{this.message}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Features Section -->
+    <div class="container my-2">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="feature-card shadow-sm p-4 rounded">
+            <i class="bi bi-journal-check display-4 text-primary"></i>
+            <h3 class="mt-3">Two Way Data Bindings</h3>
+            <input type="text" [(ngModel)]="username" class="form-control" placeholder="Enter your name">
+            <p class="mt-2">Hello, {{username}}!</p>
+            <label>
+             <input type="checkbox" [(ngModel)]="isChecked" class="form-check-input"> Checkme
+            </label>
+            <p class="mt-2">Checkbox is {{isChecked ? 'checked' : 'unchecked'}}</p>
+
+            <select [(ngModel)]="selectedOption" class="dropdown">
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+            <p class="mt-2">Selected: {{selectedOption}}</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card shadow-sm p-4 rounded">
+            <i class="bi bi-award display-4 text-warning"></i>
+            <h3 class="mt-3">Structure Directives:*ngIf; else AND latest if else</h3>
+            
+            <p *ngIf="isLoggedIn; else notLoginTemplate">Welcome back, user!</p>
+            <ng-template #notLoginTemplate>
+              <p>Please log in to continue.</p>
+            </ng-template>
+            
+            <p> if and  else is the recommended and preferred way to handle conditional rendering in  Angular 17 and later versions,</p>
+            @if (isLoggedIn){
+            <p>Welcome back, user! Latest If Else usage Angular 17+</p>
+            } @else {
+              <p>Please log in to continue. Latest If Else usage Angular 17+</p>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card shadow-sm p-4 rounded">
+            <i class="bi bi-clock-history display-4 text-success"></i>
+            <h3 class="mt-3">Resume Anytime</h3>
+            <p>Flexible learning that allows you to start, pause, and resume tests at your convenience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Tech Stack Section -->
+    <div class="container tech-stack-section text-center py-5">
+      <h2 class="mb-4">Explore Our Tech Stacks</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+          <div class="tech-stack-card shadow-sm p-3 rounded">
+            <i class="bi bi-box-arrow-up-right text-primary display-5"></i>
+            <p class="mt-2">Angular</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="tech-stack-card shadow-sm p-3 rounded">
+            <i class="bi bi-gear-fill text-danger display-5"></i>
+            <p class="mt-2">.NET Core</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="tech-stack-card shadow-sm p-3 rounded">
+            <i class="bi bi-code-slash text-success display-5"></i>
+            <p class="mt-2">React</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="tech-stack-card shadow-sm p-3 rounded">
+            <i class="bi bi-cloud text-info display-5"></i>
+            <p class="mt-2">AZ-204</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
