@@ -1,4 +1,17 @@
 <app-header></app-header>
+
+<div class="card bg-base-100 w-1/2 mx-auto p-10 mt-10 shadow-xl">
+    <h3 class="text-3xl text-red-500"> {{title}} </h3>
+    <ul class="list">
+        <!-- There are 100 daat coming from API , but we restrict to dispaly 1 only -->
+        @for (member of members().slice(0, 1); track member.id) {
+        <li class="list-row items-center">
+            {{member.id}} - Title: {{member.title}} - Body: {{member.body}} 
+        </li>
+        }
+    </ul>
+</div>
+<!-- <button class="btn btn-primary">Primary</button> -->
 <!--<app-home></app-home> -->
 <router-outlet />
 <app-footer> </app-footer>

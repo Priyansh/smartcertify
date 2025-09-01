@@ -37,7 +37,7 @@
                         <small *ngIf="contactForm.get('message')?.errors?.['required']">Message is required.</small>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Send Message</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!formValidity()">Send Message</button>
             </form>
         </div>
 

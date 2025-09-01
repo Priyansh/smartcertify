@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -10,14 +10,18 @@ import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } 
 })
 export class ContactUsComponent {
   contactForm!: FormGroup;
-  userId: number = 0;
+  formValidity = signal(false);
   constructor( private fb: FormBuilder ) {
       this.contactForm = this.fb.group(
         {
           name: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
-          subject: ['', Validators.required],
-          message: ['', Validators.required],
+          subject: ['', Validators.required, Validators.minLength(5)],
+          message: ['', Validators.required, Validators.minLength(10)],
+        });
+
+        this.contactForm.statusChanges.subscribe(status => {
+          this.formValidity.set(status === 'VALID');
         });
     }
     triggerError() {

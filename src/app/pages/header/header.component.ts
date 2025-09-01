@@ -9,12 +9,13 @@ import { RouterModule } from '@angular/router';
   // commonModule : used for structural directives like *ngIf, *ngFor
   // RouterModule : used for routing
   //FormsModule : used of [(ngModel)] for two-way binding
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [ RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  
 })
 export class HeaderComponent {
 
-  ischecked: boolean = false;
+  // ischecked: boolean = false;
 
 }
