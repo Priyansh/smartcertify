@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CoursesService } from '../../services/courses.service';
+import { CoursesService } from '../../services/courses.service'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Courses } from '../Models/courses';
@@ -19,6 +19,7 @@ export class CoursesComponent implements OnInit {
   async ngOnInit() {
     this.loadCourses();
   }
+  
   loadCourses() {
     this.courseService.get_Courses().subscribe({
       next: (data) => {
@@ -32,5 +33,7 @@ export class CoursesComponent implements OnInit {
     });
     // this.courses.set(await this.courseService.getCourses());
   }
+
+  
 
 }

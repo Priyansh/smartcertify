@@ -22,6 +22,10 @@ export const routes: Routes = [
     {
         path: 'courses', loadComponent: () =>
         import('./pages/courses/courses.component').then(m => m.CoursesComponent)
-    },    
+    },
+    {
+        path: 'usercrud-formgroup', loadComponent: () =>
+        import('./pages/usercrud-formgroup/usercrud-formgroup.component').then(m => m.UsercrudFormgroupComponent)
+    },
     { path: '**', redirectTo: 'home'} // Wildcard route for a 404 page
 ];
