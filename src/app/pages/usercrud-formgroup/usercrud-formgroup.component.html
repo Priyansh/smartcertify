@@ -72,8 +72,7 @@
                             class='text-danger'>
                             <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['required']" for="email">Email
                                 is Required</small>
-                            <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['minlength']"
-                                for="email">Min(2)
+                            <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['minlength']" for="email">Min(2)
                                 is Required</small>
                             <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['maxlength']"
                                 for="email">Max(20)
@@ -81,11 +80,25 @@
                         </div>
                     </div>
                 </div>
+                
+                <!--TODO: Make Dependable dropdown refer this link : https://www.youtube.com/watch?v=ncMO1Lt7b6g -->
+                <!-- <div class="row m-2">
+                    <div class="col-6">
+                        <label for="email">Email</label>
+                        <select [(ngModel)]="selectedOption" class="dropdown" formControlName="">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select>
+
+                    </div>
+                </div> -->
+
                 <div class="row m-3">
                     <div class="col-6">
                         <button class="btn btn-secondary m-2" (click)="onClear()">Clear</button>
-                        <button class="btn btn-primary" (click)="onUpsertUsers()" 
-                                [disabled]="userFormBuilder.invalid">Submit</button>
+                        <button class="btn btn-primary" (click)="onUpsertUsers()"
+                            [disabled]="userFormBuilder.invalid">Submit</button>
                     </div>
                 </div>
             </form>

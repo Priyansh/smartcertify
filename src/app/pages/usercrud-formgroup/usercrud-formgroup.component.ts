@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usercrud-formgroup',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './usercrud-formgroup.component.html',
   styleUrl: './usercrud-formgroup.component.css'
 })
@@ -16,6 +17,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class UsercrudFormgroupComponent implements OnInit {
   protected http = inject(HttpClient);
   protected formBuilder = inject(FormBuilder);
+  protected router = inject(Router);
 
   //NOTE: There are two way to do Form, one FormGroup and using FormBuilder Service
   protected userFormBuilder: FormGroup = this.formBuilder.group({
@@ -93,6 +95,7 @@ export class UsercrudFormgroupComponent implements OnInit {
           alert('User updated successfully!');
           //this.userForm.reset();
           this.userFormBuilder.reset();
+          //this.router.navigate(['/courses'])
         },
         error: (error) => {
           console.error('Error updating user:', error.error);
