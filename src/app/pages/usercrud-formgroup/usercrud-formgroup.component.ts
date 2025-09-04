@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-usercrud-formgroup',
@@ -15,6 +15,16 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 // Fake API : https://jsonplaceholder.typicode.com/users
 export class UsercrudFormgroupComponent implements OnInit {
   protected http = inject(HttpClient);
+  protected formBuilder = inject(FormBuilder);
+
+  //NOTE: There are two way to do Form, one FormGroup and using FormBuilder Service
+  protected userFormBuilder: FormGroup = this.formBuilder.group({
+    id: new FormControl(''), //[0, Validators.required],
+    name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+    email: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+  });
+
   protected userForm: FormGroup = new FormGroup({
     id: new FormControl(0),
     name: new FormControl(''),
@@ -42,16 +52,14 @@ export class UsercrudFormgroupComponent implements OnInit {
   }
 
   onEditUser(user: any) {
-    /* this.http.get(this.base_URL + '/users/' + id).subscribe((user: any) => {
-      this.userForm = new FormGroup({
-        id: new FormControl(user.id),
-        name: new FormControl(user.name),
-        username: new FormControl(user.username),
-        email: new FormControl(user.email),
-      });
-      this.userId.set(id);
-      this.hasEdit.set(true);
-    }) */
+
+    this.userFormBuilder = this.formBuilder.group({
+      id: new FormControl(user.id),
+      name: new FormControl(user.name),
+      username: new FormControl(user.username),
+      email: new FormControl(user.email),
+    });
+
     this.userForm = new FormGroup({
       id: new FormControl(user.id),
       name: new FormControl(user.name),
@@ -63,12 +71,13 @@ export class UsercrudFormgroupComponent implements OnInit {
   }
 
   onUpsertUsers() {
-    var userData = this.userForm.value;
+    var userData = this.userFormBuilder.value;//this.userForm.value;
     if (!this.hasEdit()) {
       this.http.post(this.base_URL + '/users', userData).subscribe({
         next: (data) => {
           alert('User created successfully!');
-          this.userForm.reset();
+          //this.userForm.reset();
+          this.userFormBuilder.reset();
         },
         error: (error) => {
           console.error('Error creating user:', error.error);
@@ -82,7 +91,8 @@ export class UsercrudFormgroupComponent implements OnInit {
       this.http.put(this.base_URL + '/users/' + this.userId(), userData).subscribe({
         next: (data) => {
           alert('User updated successfully!');
-          this.userForm.reset();
+          //this.userForm.reset();
+          this.userFormBuilder.reset();
         },
         error: (error) => {
           console.error('Error updating user:', error.error);
@@ -117,6 +127,7 @@ export class UsercrudFormgroupComponent implements OnInit {
   onClear() {
     this.hasEdit.set(false);
     this.userId.set(0);
-    this.userForm.reset();
+    //this.userForm.reset();
+    this.userFormBuilder.reset();
   }
 }

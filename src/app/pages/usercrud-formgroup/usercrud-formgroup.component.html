@@ -27,30 +27,65 @@
         </div>
 
         <div class="col-5">
-            <form [formGroup]="userForm">
+            <form [formGroup]="userFormBuilder">
                 <div class="row m-2">
                     <div class="col-5">
-                        <label for="">Name</label>
+                        <label for="name">Name</label>
                         <input type="text" formControlName="name" class="form-control" placeholder="Enter Name" />
+                        <div *ngIf="userFormBuilder.controls?.['name']?.invalid && 
+                                    (userFormBuilder.controls?.['name']?.touched || userFormBuilder.controls?.['name']?.dirty) "
+                            class='text-danger'>
+                            <small *ngIf="userFormBuilder.controls?.['name']?.errors?.['required']" for="name">Name is
+                                Required</small>
+                            <small *ngIf="userFormBuilder.controls?.['name']?.errors?.['minlength']" for="name">Min(2)
+                                is Required</small>
+                            <small *ngIf="userFormBuilder.controls?.['name']?.errors?.['maxlength']" for="name">Max(20)
+                                is Required</small>
+                        </div>
                     </div>
                 </div>
                 <div class="row m-2">
                     <div class="col-5">
-                        <label for="">UserName</label>
+                        <label for="username">UserName</label>
                         <input type="text" formControlName="username" class="form-control"
                             placeholder="Enter UserName" />
+                        <div *ngIf="userFormBuilder.controls?.['username']?.invalid && 
+                                    (userFormBuilder.controls?.['username']?.touched || userFormBuilder.controls?.['username']?.dirty) "
+                            class='text-danger'>
+                            <small *ngIf="userFormBuilder.controls?.['username']?.errors?.['required']"
+                                for="username">UserName is Required</small>
+                            <small *ngIf="userFormBuilder.controls?.['username']?.errors?.['minlength']"
+                                for="username">Min(2)
+                                is Required</small>
+                            <small *ngIf="userFormBuilder.controls?.['username']?.errors?.['maxlength']"
+                                for="username">Max(20)
+                                is Required</small>
+                        </div>
                     </div>
                 </div>
                 <div class="row m-2">
                     <div class="col-6">
-                        <label for="">Email</label>
+                        <label for="email">Email</label>
                         <input type="text" formControlName="email" class="form-control" placeholder="Enter Email" />
+                        <div *ngIf="userFormBuilder.controls?.['email']?.invalid && 
+                                    (userFormBuilder.controls?.['email']?.touched || userFormBuilder.controls?.['email']?.dirty) "
+                            class='text-danger'>
+                            <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['required']" for="email">Email
+                                is Required</small>
+                            <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['minlength']"
+                                for="email">Min(2)
+                                is Required</small>
+                            <small *ngIf="userFormBuilder.controls?.['email']?.errors?.['maxlength']"
+                                for="email">Max(20)
+                                is Required</small>
+                        </div>
                     </div>
                 </div>
                 <div class="row m-3">
                     <div class="col-6">
                         <button class="btn btn-secondary m-2" (click)="onClear()">Clear</button>
-                        <button class="btn btn-primary" (click)="onUpsertUsers()">Submit</button>
+                        <button class="btn btn-primary" (click)="onUpsertUsers()" 
+                                [disabled]="userFormBuilder.invalid">Submit</button>
                     </div>
                 </div>
             </form>
