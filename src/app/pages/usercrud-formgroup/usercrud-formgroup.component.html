@@ -18,7 +18,8 @@
                         <td>{{user.username}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <button class="btn btn-primary" (click)="onEditUser(user.id)">Edit</button>
+                            <button class="btn btn-primary" (click)="onEditUser(user)">Edit</button>
+                            <button class="btn btn-danger" (click)="onDeleteUser(user.id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -49,14 +50,11 @@
                 <div class="row m-3">
                     <div class="col-6">
                         <button class="btn btn-secondary m-2" (click)="onClear()">Clear</button>
-                        <button class="btn btn-primary" (click)="onSubmitUsers()">Submit</button>
+                        <button class="btn btn-primary" (click)="onUpsertUsers()">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="row">
-        
-    </div>
 </div>
